@@ -83,6 +83,7 @@ lazy val client = project
   .settings(inConfig(ClusterTest)(Defaults.testTasks): _*)
   .settings(
     moduleName := "eventstore-client",
+    Test / compile / scalacOptions --= Seq("-Xfatal-warnings"), // TODO: Remove after 7.1.0
     Test            / testOptions := Seq(Tests.Filter(_ endsWith "Spec")),
     IntegrationTest / testOptions := Seq(Tests.Filter(_ endsWith "ITest")),
     ClusterTest     / testOptions := Seq(Tests.Filter(_ endsWith "CTest")),

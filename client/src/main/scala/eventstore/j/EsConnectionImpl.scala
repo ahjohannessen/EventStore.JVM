@@ -243,16 +243,19 @@ class EsConnectionImpl(
     connection(out, Option(credentials))
   }
 
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `streamSource`.", since = "7.0.0")
   def subscribeToStream(
     stream:         String,
     observer:       SubscriptionObserver[Event],
     resolveLinkTos: Boolean,
     credentials:    UserCredentials
   ) = {
-
-    connection.subscribeToStream(EventStream.Id(stream), observer, resolveLinkTos, Option(credentials))
+    connection.subscribeToStream(EventStream.Id(stream), observer, Some(EventNumber.Last), resolveLinkTos, Option(credentials))
   }
 
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `streamSource`.", since = "7.0.0")
   def subscribeToStreamFrom(
     stream:                   String,
     observer:                 SubscriptionObserver[Event],
@@ -260,33 +263,30 @@ class EsConnectionImpl(
     resolveLinkTos:           Boolean,
     credentials:              UserCredentials
   ) = {
-
-    connection.subscribeToStreamFrom(
-      EventStream.Id(stream),
-      observer,
-      Option(fromEventNumberExclusive).map(EventNumber.Exact(_)),
-      resolveLinkTos,
-      Option(credentials)
+    connection.subscribeToStream(
+      EventStream.Id(stream), observer, Option(fromEventNumberExclusive).map(EventNumber.Exact(_)), resolveLinkTos, Option(credentials)
     )
   }
 
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `allStreamsSource`.", since = "7.0.0")
   def subscribeToAll(
     observer:       SubscriptionObserver[IndexedEvent],
     resolveLinkTos: Boolean,
     credentials:    UserCredentials
   ) = {
-
-    connection.subscribeToAll(observer, resolveLinkTos, Option(credentials))
+    connection.subscribeToAll(observer, Some(Position.Last), resolveLinkTos, Option(credentials))
   }
 
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `allStreamsSource`.", since = "7.0.0")
   def subscribeToAllFrom(
     observer:              SubscriptionObserver[IndexedEvent],
     fromPositionExclusive: Position.Exact,
     resolveLinkTos:        Boolean,
     credentials:           UserCredentials
   ) = {
-
-    connection.subscribeToAllFrom(observer, Option(fromPositionExclusive), resolveLinkTos, Option(credentials))
+    connection.subscribeToAll(observer, Option(fromPositionExclusive), resolveLinkTos, Option(credentials))
   }
 
   def setStreamMetadata(

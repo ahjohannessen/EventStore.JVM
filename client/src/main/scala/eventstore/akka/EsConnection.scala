@@ -82,6 +82,8 @@ class EsConnection(
    * @param credentials    The optional user credentials to perform operation with
    * @return A [[Closeable]] representing the subscription which can be closed.
    */
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `streamSource`.", since = "7.0.0")
   def subscribeToStream(
     streamId:       EventStream.Id,
     observer:       SubscriptionObserver[Event],
@@ -113,6 +115,8 @@ class EsConnection(
    * @param credentials         The optional user credentials to perform operation with
    * @return A [[Closeable]] representing the subscription which can be closed.
    */
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `streamSource`.", since = "7.0.0")
   def subscribeToStreamFrom(
     streamId:            EventStream.Id,
     observer:            SubscriptionObserver[Event],
@@ -124,7 +128,7 @@ class EsConnection(
     subscribeToStream(streamId, observer, fromNumberExclusive, resolveLinkTos, credentials)
   }
 
-  private def subscribeToStream(
+  private[eventstore] def subscribeToStream(
     streamId:            EventStream.Id,
     observer:            SubscriptionObserver[Event],
     fromNumberExclusive: Option[EventNumber],
@@ -154,12 +158,13 @@ class EsConnection(
    * @param credentials    The optional user credentials to perform operation with
    * @return A [[Closeable]] representing the subscription which can be closed.
    */
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `allStreamsSource`.", since = "7.0.0")
   def subscribeToAll(
     observer:       SubscriptionObserver[IndexedEvent],
     resolveLinkTos: Boolean                            = settings.resolveLinkTos,
     credentials:    Option[UserCredentials]            = None
   ): Closeable = {
-
     subscribeToAll(observer, Some(Position.Last), resolveLinkTos, credentials)
   }
 
@@ -182,17 +187,18 @@ class EsConnection(
    * @param credentials           The optional user credentials to perform operation with
    * @return A [[Closeable]] representing the subscription which can be closed.
    */
+  // TODO(AHJ): Provide link to example or inline here.
+  @deprecated("Use `allStreamsSource`.", since = "7.0.0")
   def subscribeToAllFrom(
     observer:              SubscriptionObserver[IndexedEvent],
     fromPositionExclusive: Option[Position.Exact]             = None,
     resolveLinkTos:        Boolean                            = settings.resolveLinkTos,
     credentials:           Option[UserCredentials]            = None
   ): Closeable = {
-
     subscribeToAll(observer, fromPositionExclusive, resolveLinkTos, credentials)
   }
 
-  private def subscribeToAll(
+  private[eventstore] def subscribeToAll(
     observer:              SubscriptionObserver[IndexedEvent],
     fromPositionExclusive: Option[Position],
     resolveLinkTos:        Boolean,

@@ -349,7 +349,10 @@ public interface EsConnection {
    * @param resolveLinkTos Whether to resolve LinkTo events automatically
    * @param credentials    The optional user credentials to perform operation with
    * @return A {@link java.io.Closeable} representing the subscription which can be closed.
+   * TODO(AHJ): Provide link to example or inline here.
+   * @deprecated Use <code>connection.streamSource(...) instead;</code>, since "7.0.0"
    */
+  @Deprecated
   Closeable subscribeToStream(
       String stream,
       SubscriptionObserver<Event> observer,
@@ -377,7 +380,10 @@ public interface EsConnection {
    * @param resolveLinkTos           Whether to resolve LinkTo events automatically
    * @param credentials              The optional user credentials to perform operation with
    * @return A {@link java.io.Closeable} representing the subscription which can be closed.
+   * TODO(AHJ): Provide link to example or inline here.
+   * @deprecated Use <code>connection.streamSource(...) instead;</code>, since "7.0.0"
    */
+  @Deprecated
   Closeable subscribeToStreamFrom(
       String stream,
       SubscriptionObserver<Event> observer,
@@ -393,7 +399,10 @@ public interface EsConnection {
    * @param resolveLinkTos Whether to resolve LinkTo events automatically
    * @param credentials    The optional user credentials to perform operation with
    * @return A {@link java.io.Closeable} representing the subscription which can be closed.
+   * TODO(AHJ): Provide link to example or inline here.
+   * @deprecated Use <code>connection.streamSource(...) instead;</code>, since "7.0.0"
    */
+  @Deprecated
   Closeable subscribeToAll(
       SubscriptionObserver<IndexedEvent> observer,
       boolean resolveLinkTos,
@@ -418,7 +427,10 @@ public interface EsConnection {
    * @param resolveLinkTos        Whether to resolve LinkTo events automatically
    * @param credentials           The optional user credentials to perform operation with
    * @return A {@link java.io.Closeable} representing the subscription which can be closed.
+   * TODO(AHJ): Provide link to example or inline here.
+   * @deprecated Use <code>connection.streamSource(...) instead;</code>, since "7.0.0"
    */
+  @Deprecated
   Closeable subscribeToAllFrom(
       SubscriptionObserver<IndexedEvent> observer,
       Position.Exact fromPositionExclusive,
